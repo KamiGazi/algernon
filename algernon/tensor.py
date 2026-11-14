@@ -22,12 +22,18 @@ def _get_shape(data):
         if current_shape != previous_shape:
             raise ValueError("Inconsistent shape found in tensor data")
     return (len(data),) + current_shape
-        
+
+def _get_strides(shape):
+    strides = []
+    stride = 1
+    for dim in reversed(shape):
+        strides.append(stride)
+        stride *= dim
+    strides.reverse()
+    return tuple(strides)
+    
 class Tensor:
     def __init__(self, data):
-        self.data = data
         self.shape = _get_shape(data)
         self.storage = _flatten(data)
-
-    def __getitem__(self, index):
-        return self.data[index]
+        self.strides = _get_strides(self.shape)
