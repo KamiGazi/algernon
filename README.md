@@ -39,6 +39,7 @@ So: **algernon!**
 - [ ] Autograd engine
 - [ ] Backend
 - [ ] Train a model end to end
+- [ ] **v1:** an MLP built on algernon reaches ≥95% test accuracy on MNIST, with no NumPy or PyTorch in the library
 
 ## 📁 Project structure
 
